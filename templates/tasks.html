@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Tasks{% endblock %}
+{% block content %}
+    <h2>Tasks</h2>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <h3>{{ task.title }}</h3>
+                <p>{{ task.description }}</p>
+                <form method="POST" action="{{ url_for('delete_task', task_id=task._id) }}">
+                    <button type="submit">Delete Task</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_task') }}">Add Task</a>
+    <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+{% endblock %}
